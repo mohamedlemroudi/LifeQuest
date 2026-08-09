@@ -15,7 +15,7 @@ def gain_xp(player, amount):
 
 def show_mission(missions_list):
     for i, mission in enumerate(missions_list, start=1):
-        print(f"{i}. {mission}")
+        print(f"{i}. {mission['name']}")
 
     print("0. Salir")
 
@@ -31,12 +31,12 @@ def ask_mission(player, missions_list):
             
             if 1 <= mission_number <= len(missions_list):
                 mission_selected = missions_list[mission_number - 1] 
-                print("Has completado:" + mission_selected)
-                print("Has ganado 50 XP.")
+                print("Has completado:" + mission_selected["name"])
+                print("Has ganado " + str(mission_selected["xp"]) + " XP.")
 
                 missions_list.remove(mission_selected)
     
-                gain_xp(player, 50)
+                gain_xp(player, mission_selected["xp"])
     
             elif mission_number == 0:
                 print("Saliendo del juego.")
@@ -63,10 +63,26 @@ player = {
 }
 
 missions_list = [
-    "Estudiar Python",
-    "Hacer ejercicio",
-    "Leer 20 páginas",
-    "Meditar"
+    {
+        "name": "Estudiar Python",
+        "xp": 50,
+        "difficulty": "easy"
+    },
+    {
+        "name": "Hacer ejercicio",
+        "xp": 30,
+        "difficulty": "easy"
+    },
+    {
+        "name": "Leer 20 páginas",
+        "xp": 75,
+        "difficulty": "medium"
+    },
+    {
+        "name": "Meditar",
+        "xp": 100,
+        "difficulty": "difficult"
+    }
 ]
 
 show_player(player)
