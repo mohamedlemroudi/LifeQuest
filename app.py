@@ -5,19 +5,42 @@ def show_player(player):
     print("Niveles ganados: " + str(player["levels_gained"]))
 
 def level_up(player):
-    player["levels_gained"] = player["xp"] // 100
-    player["level"] += player["levels_gained"]
-    player["xp"] -= 100 * (player["levels_gained"])
+    num_levels = player["xp"] // 100
+    player["levels_gained"] = num_levels
+    player["level"] += num_levels
+    player["xp"] -= 100 * num_levels
+
 
 def gain_xp(player, amount):
     player["xp"] += amount
-    return player["xp"]
+
 
 def show_mission(missions_list):
     for i, mission in enumerate(missions_list, start=1):
-        print(f"{i}. {mission['name']}")
+        print(f"{i}. {mission['name']} | {mission['difficulty']} | +{mission['xp']} XP")
 
     print("0. Salir")
+
+
+def mission_completed(player, missions_list, mission_number):
+    mission_selected = missions_list[mission_number - 1] 
+    print("Has completado:" + mission_selected["name"])
+    print("Has ganado " + str(mission_selected["xp"]) + " XP.")
+
+    missions_list.remove(mission_selected)
+
+    player["levels_gained"] = 0
+
+    gain_xp(player, mission_selected["xp"])
+
+
+def check_level_up(player):
+    if player["xp"] >= 100:
+        level_up(player)
+        
+        print("¡Felicidades! Has subido al nivel " + str(player["level"]) + ".")
+        print("¡Has ganado " + str(player["levels_gained"]) + " niveles!")
+
 
 def ask_mission(player, missions_list):
     continuar = True
@@ -30,13 +53,8 @@ def ask_mission(player, missions_list):
             mission_number = int(input("Elige una misión: "))
             
             if 1 <= mission_number <= len(missions_list):
-                mission_selected = missions_list[mission_number - 1] 
-                print("Has completado:" + mission_selected["name"])
-                print("Has ganado " + str(mission_selected["xp"]) + " XP.")
-
-                missions_list.remove(mission_selected)
-    
-                gain_xp(player, mission_selected["xp"])
+                mission_completed(player, missions_list, mission_number)
+                check_level_up(player)
     
             elif mission_number == 0:
                 print("Saliendo del juego.")
@@ -47,12 +65,6 @@ def ask_mission(player, missions_list):
 
         except ValueError:
             print("Respuesta no válida.")
-
-    if player["xp"] >= 100:
-        level_up(player)
-        
-        print("¡Felicidades! Has subido al nivel " + str(player["level"]) + ".")
-        print("¡Has ganado " + str(player["levels_gained"]) + " niveles!")
 
 
 player = {
