@@ -17,7 +17,7 @@ def gain_xp(player, amount):
 
 def show_mission(missions_list):
     position = 1
-    for i, mission in enumerate(missions_list, start=1):
+    for mission in missions_list:
         if not mission["completed"]:
             print(f"{position}. {mission['name']} | {mission['difficulty']} | +{mission['xp']} XP")
             position += 1
@@ -62,8 +62,8 @@ def ask_mission(player, missions_list):
                 for mission in missions_list
                 if not mission["completed"]
             ]
-            
-            if 1 <= mission_number <= len(available_missions) and len(available_missions) > 0:
+
+            if 1 <= mission_number <= len(available_missions):
                 mission_completed(player, mission_number, available_missions)
     
             elif mission_number == 0:
