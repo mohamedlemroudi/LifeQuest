@@ -16,22 +16,27 @@ def gain_xp(player, amount):
 
 
 def show_mission(missions_list):
+    position = 1
     for i, mission in enumerate(missions_list, start=1):
-        print(f"{i}. {mission['name']} | {mission['difficulty']} | +{mission['xp']} XP")
+        if not mission["completed"]:
+            print(f"{position}. {mission['name']} | {mission['difficulty']} | +{mission['xp']} XP")
+            position += 1
 
     print("0. Salir")
 
 
-def mission_completed(player, missions_list, mission_number):
-    mission_selected = missions_list[mission_number - 1] 
+def mission_completed(player, mission_number, available_missions):
+    mission_selected = available_missions[mission_number - 1]
     print("Has completado:" + mission_selected["name"])
     print("Has ganado " + str(mission_selected["xp"]) + " XP.")
 
-    missions_list.remove(mission_selected)
+    mission_selected["completed"] = True
 
     player["levels_gained"] = 0
 
     gain_xp(player, mission_selected["xp"])
+
+    check_level_up(player)
 
 
 def check_level_up(player):
@@ -51,10 +56,15 @@ def ask_mission(player, missions_list):
 
         try:
             mission_number = int(input("Elige una misión: "))
+
+            available_missions = [
+                mission
+                for mission in missions_list
+                if not mission["completed"]
+            ]
             
-            if 1 <= mission_number <= len(missions_list):
-                mission_completed(player, missions_list, mission_number)
-                check_level_up(player)
+            if 1 <= mission_number <= len(available_missions) and len(available_missions) > 0:
+                mission_completed(player, mission_number, available_missions)
     
             elif mission_number == 0:
                 print("Saliendo del juego.")
@@ -78,22 +88,26 @@ missions_list = [
     {
         "name": "Estudiar Python",
         "xp": 50,
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "completed": False
     },
     {
         "name": "Hacer ejercicio",
         "xp": 30,
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "completed": False
     },
     {
         "name": "Leer 20 páginas",
         "xp": 75,
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "completed": False
     },
     {
         "name": "Meditar",
         "xp": 100,
-        "difficulty": "difficult"
+        "difficulty": "difficult",
+        "completed": False
     }
 ]
 
