@@ -42,22 +42,14 @@ def show_mission(missions_list):
 
     print("0. Volver al menú principal.")
 
-def calculate_reward(mission):
-    base_reward = mission.xp_reward
-    multiplier_difficulty = {
-        "easy": 1,
-        "medium": 1.5,
-        "difficult": 2
-    }
-    return base_reward * multiplier_difficulty.get(mission.difficulty, 1)
 
 def mission_completed(player, mission_number, available_missions):
     mission_selected = available_missions[mission_number - 1]
 
-    reward = calculate_reward(mission_selected)
+    reward = mission_selected.calculate_reward()
 
-    mission_selected.completed = True
-    
+    mission_selected.complete()
+
     print("Has completado:" + mission_selected.name)
     print("Has ganado " + str(reward) + " XP.")
 
