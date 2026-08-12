@@ -1,19 +1,21 @@
+from Player import Player
+
 def show_player(player):
-    print("Jugador: " + player["name"])
-    print("Nivel: " + str(player["level"]))
-    print("XP: " + str(player["xp"]))
-    print("Misiones completadas: " + str(player["missions_completed"]))
-    print("XP total: " + str(player["total_xp"]))
+    print("Jugador: " + player.name)
+    print("Nivel: " + str(player.level))
+    print("XP: " + str(player.xp))
+    print("Misiones completadas: " + str(player.missions_completed))
+    print("XP total: " + str(player.total_xp))
 
 def show_stats(player):
-    print("Jugador: " + player["name"])
-    print("Nivell: " + str(player["level"]))
-    print("XP actual: " + str(player["xp"]))
-    print("XP total: " + str(player["total_xp"]))
-    print("Misiones completadas: " + str(player["missions_completed"]))
+    print("Jugador: " + player.name)
+    print("Nivell: " + str(player.level))
+    print("XP actual: " + str(player.xp))
+    print("XP total: " + str(player.total_xp))
+    print("Misiones completadas: " + str(player.missions_completed))
 
-    if player["missions_completed"] > 0:
-        average_xp = player["total_xp"] / player["missions_completed"]
+    if player.missions_completed > 0:
+        average_xp = player.total_xp / player.missions_completed
     else:
         average_xp = 0
 
@@ -30,12 +32,12 @@ def show_menu():
     print("0. Salir")
 
 def calculate_levels_gained(player):
-    return player["xp"] // 100
+    return player.xp // 100
 
 
 def gain_xp(player, amount):
-    player["xp"] += amount
-    player["total_xp"] += amount
+    player.xp += amount
+    player.total_xp += amount
 
 
 def show_mission(missions_list):
@@ -68,17 +70,17 @@ def mission_completed(player, mission_number, available_missions):
 
     gain_xp(player, reward)
 
-    player["missions_completed"] += 1
+    player.missions_completed += 1
     
     check_level_up(player)
 
 def check_level_up(player):
-    if player["xp"] >= 100:
+    if player.xp >= 100:
         levels_gained = calculate_levels_gained(player)
-        player["level"] += levels_gained
-        player["xp"] -= 100 * levels_gained
+        player.level += levels_gained
+        player.xp -= 100 * levels_gained
         
-        print("¡Felicidades! Has subido al nivel " + str(player["level"]) + ".")
+        print("¡Felicidades! Has subido al nivel " + str(player.level) + ".")
         print("¡Has ganado " + str(levels_gained) + " niveles!")
 
 
@@ -110,15 +112,6 @@ def ask_mission(player, missions_list):
         except ValueError:
             print("Respuesta no válida.")
 
-
-player = {
-    "name": input("Enter your name: "),
-    "level": 1,
-    "xp": 0,
-    "missions_completed": 0,
-    "total_xp": 0
-}
-
 missions_list = [
     {
         "name": "Estudiar Python",
@@ -146,16 +139,18 @@ missions_list = [
     }
 ]
 
+player_1 = Player("Mohamed")
+
 while True:
     show_menu()
     choice = input("Elige una opción: ")
 
     if choice == "1":
-        show_player(player)
+        show_player(player_1)
     elif choice == "2":
-        ask_mission(player, missions_list)
+        ask_mission(player_1, missions_list)
     elif choice == "3":
-        show_stats(player)
+        show_stats(player_1)
     elif choice == "0":
         print("Saliendo del juego.")
         break
