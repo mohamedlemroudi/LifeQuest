@@ -20,8 +20,8 @@ class Player:
             self.level += levels_gained
             self.xp -= 100 * levels_gained
 
-            print("¡Felicidades! Has subido al nivel " + str(self.level) + ".")
-            print("¡Has ganado " + str(levels_gained) + " niveles!")
+            print(f"¡Felicidades! Has subido al nivel {self.level}.")
+            print(f"¡Has ganado {levels_gained} niveles!")
 
     def complete_mission(self, reward):
         self.gain_xp(reward)

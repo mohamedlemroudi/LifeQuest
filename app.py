@@ -1,4 +1,5 @@
 from Player import Player
+from Mission import Mission
 
 def show_player(player):
     print("Jugador: " + player.name)
@@ -35,29 +36,29 @@ def show_menu():
 def show_mission(missions_list):
     position = 1
     for mission in missions_list:
-        if not mission["completed"]:
-            print(f"{position}. {mission['name']} | {mission['difficulty']} | +{mission['xp']} XP")
+        if not mission.completed:
+            print(f"{position}. {mission.name} | {mission.difficulty} | +{mission.xp_reward} XP")
             position += 1
 
     print("0. Volver al menú principal.")
 
 def calculate_reward(mission):
-    base_reward = mission["xp"]
+    base_reward = mission.xp_reward
     multiplier_difficulty = {
         "easy": 1,
         "medium": 1.5,
         "difficult": 2
     }
-    return base_reward * multiplier_difficulty.get(mission["difficulty"], 1)
+    return base_reward * multiplier_difficulty.get(mission.difficulty, 1)
 
 def mission_completed(player, mission_number, available_missions):
     mission_selected = available_missions[mission_number - 1]
 
     reward = calculate_reward(mission_selected)
 
-    mission_selected["completed"] = True
+    mission_selected.completed = True
     
-    print("Has completado:" + mission_selected["name"])
+    print("Has completado:" + mission_selected.name)
     print("Has ganado " + str(reward) + " XP.")
 
     player.complete_mission(reward)
@@ -75,7 +76,7 @@ def ask_mission(player, missions_list):
             available_missions = [
                 mission
                 for mission in missions_list
-                if not mission["completed"]
+                if not mission.completed
             ]
 
             if 1 <= mission_number <= len(available_missions):
@@ -91,32 +92,14 @@ def ask_mission(player, missions_list):
         except ValueError:
             print("Respuesta no válida.")
 
+
 missions_list = [
-    {
-        "name": "Estudiar Python",
-        "xp": 50,
-        "difficulty": "easy",
-        "completed": False
-    },
-    {
-        "name": "Hacer ejercicio",
-        "xp": 30,
-        "difficulty": "easy",
-        "completed": False
-    },
-    {
-        "name": "Leer 20 páginas",
-        "xp": 75,
-        "difficulty": "medium",
-        "completed": False
-    },
-    {
-        "name": "Meditar",
-        "xp": 100,
-        "difficulty": "difficult",
-        "completed": False
-    }
+    Mission("Estudiar Python", 50, "easy"),
+    Mission("Hacer ejercicio", 30, "medium"),
+    Mission("Leer 20 páginas", 100, "difficult"),
+    Mission("Meditar", 175, "difficult")
 ]
+
 
 player_1 = Player("Mohamed")
 
