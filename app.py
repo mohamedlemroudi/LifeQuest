@@ -5,6 +5,20 @@ def show_player(player):
     print("Misiones completadas: " + str(player["missions_completed"]))
     print("XP total: " + str(player["total_xp"]))
 
+def show_stats(player):
+    print("Jugador: " + player["name"])
+    print("Nivell: " + str(player["level"]))
+    print("XP actual: " + str(player["xp"]))
+    print("XP total: " + str(player["total_xp"]))
+    print("Misiones completadas: " + str(player["missions_completed"]))
+
+    if player["missions_completed"] > 0:
+        average_xp = player["total_xp"] / player["missions_completed"]
+    else:
+        average_xp = 0
+
+    print("XP media por misión: " + str(average_xp))
+
 def calculate_levels_gained(player):
     return player["xp"] // 100
 
@@ -79,6 +93,7 @@ def ask_mission(player, missions_list):
             elif mission_number == 0:
                 print("Saliendo del juego.")
                 continuar = False
+                show_stats(player)
     
             else:
                 print("No existe esa misión.")
