@@ -7,13 +7,13 @@ class Mission:
 
     def calculate_reward(self):
 
-        multiplier_difficulty = {
+        multiplier = {
             "easy": 1,
             "medium": 1.5,
             "difficult": 2
         }
 
-        return self.xp_reward * multiplier_difficulty.get(self.difficulty, 1)
+        return self.xp_reward * multiplier[self.difficulty]
 
     def complete(self):
         self.completed = True
