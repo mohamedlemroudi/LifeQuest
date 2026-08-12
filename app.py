@@ -19,6 +19,16 @@ def show_stats(player):
 
     print("XP media por misión: " + str(average_xp))
 
+
+def show_menu():
+    print("====================")
+    print("     LIFEQUEST")
+    print("====================")
+    print("1. Ver jugador")
+    print("2. Completar misión")
+    print("3. Ver estadísticas")
+    print("0. Salir")
+
 def calculate_levels_gained(player):
     return player["xp"] // 100
 
@@ -35,7 +45,7 @@ def show_mission(missions_list):
             print(f"{position}. {mission['name']} | {mission['difficulty']} | +{mission['xp']} XP")
             position += 1
 
-    print("0. Salir")
+    print("0. Volver al menú principal.")
 
 def calculate_reward(mission):
     base_reward = mission["xp"]
@@ -91,9 +101,8 @@ def ask_mission(player, missions_list):
                 mission_completed(player, mission_number, available_missions)
     
             elif mission_number == 0:
-                print("Saliendo del juego.")
+                print("Volviendo al menú principal.")
                 continuar = False
-                show_stats(player)
     
             else:
                 print("No existe esa misión.")
@@ -137,8 +146,18 @@ missions_list = [
     }
 ]
 
-show_player(player)
+while True:
+    show_menu()
+    choice = input("Elige una opción: ")
 
-ask_mission(player, missions_list)
-
-show_player(player)
+    if choice == "1":
+        show_player(player)
+    elif choice == "2":
+        ask_mission(player, missions_list)
+    elif choice == "3":
+        show_stats(player)
+    elif choice == "0":
+        print("Saliendo del juego.")
+        break
+    else:
+        print("Opción no válida. Por favor, elige otra opción.")
