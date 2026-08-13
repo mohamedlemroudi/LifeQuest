@@ -24,6 +24,13 @@ class Game:
 
         self.player.complete_mission(reward)
 
+    def get_available_missions(self):
+        return [
+            mission
+            for mission in self.missions_list
+            if not mission.completed
+        ]
+
 
     def ask_mission(self):
         continuar = True
@@ -34,11 +41,7 @@ class Game:
             try:
                 mission_number = int(input("Elige una misión: "))
 
-                available_missions = [
-                    mission
-                    for mission in self.missions_list
-                    if not mission.completed
-                ]
+                available_missions = self.get_available_missions()
 
                 if 1 <= mission_number <= len(available_missions):
                     self.mission_completed(mission_number, available_missions)
