@@ -12,15 +12,6 @@ class Game:
         print("3. Ver estadísticas")
         print("0. Salir")
 
-
-    def show_player(self):
-        print("Jugador: " + self.player.name)
-        print("Nivel: " + str(self.player.level))
-        print("XP: " + str(self.player.xp))
-        print("Misiones completadas: " + str(self.player.missions_completed))
-        print("XP total: " + str(self.player.total_xp))
-
-
     def show_stats(self):
         print(f"Jugador: {self.player.name}")
         print(f"Nivel: {self.player.level}")
@@ -45,10 +36,7 @@ class Game:
 
         print("0. Volver al menú principal.")
 
-    def mission_completed(self, mission_number):
-        available_missions = self.get_available_missions()
-        selected_mission = available_missions[mission_number - 1]
-
+    def mission_completed(self, selected_mission):
         reward = selected_mission.calculate_reward()
 
         selected_mission.complete()
@@ -78,7 +66,9 @@ class Game:
                 available_missions = self.get_available_missions()
 
                 if 1 <= mission_number <= len(available_missions):
-                    self.mission_completed(mission_number)
+                    selected_mission = available_missions[mission_number - 1]
+                    
+                    self.mission_completed(selected_mission)
         
                 elif mission_number == 0:
                     print("Volviendo al menú principal.")
@@ -97,7 +87,7 @@ class Game:
             choice = input("Elige una opción: ")
 
             if choice == "1":
-                self.show_player()
+                self.player.show_player()
             elif choice == "2":
                 self.ask_mission()
             elif choice == "3":

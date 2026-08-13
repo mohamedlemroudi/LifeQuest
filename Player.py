@@ -6,6 +6,13 @@ class Player:
         self.total_xp = 0
         self.missions_completed = 0
 
+    def show_player(self):
+        print("Jugador: " + self.name)
+        print("Nivel: " + str(self.level))
+        print("XP: " + str(self.xp))
+        print("Misiones completadas: " + str(self.missions_completed))
+        print("XP total: " + str(self.total_xp))
+
     def gain_xp(self, amount):
         self.xp += amount
         self.total_xp += amount
