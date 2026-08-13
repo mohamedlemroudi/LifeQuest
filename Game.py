@@ -1,3 +1,5 @@
+import json
+
 class Game:
     def __init__(self, player, missions_list):
         self.player = player
@@ -97,3 +99,8 @@ class Game:
                 break
             else:
                 print("Opción no válida. Por favor, elige otra opción.")
+
+
+    def save_mission(self, missions_data_list):
+        with open("missions.json", "w", encoding="utf-8") as file:
+            json.dump(missions_data_list, file, indent=4, ensure_ascii=False)

@@ -1,3 +1,5 @@
+import json
+
 class Player:
     def __init__(self, name):
         self.name = name
@@ -5,6 +7,8 @@ class Player:
         self.xp = 0
         self.total_xp = 0
         self.missions_completed = 0
+
+        self.save_player()
 
     def show_player(self):
         print("Jugador: " + self.name)
@@ -34,3 +38,32 @@ class Player:
         self.gain_xp(reward)
         self.missions_completed += 1
         self.check_level_up()
+
+
+    def save_player(self):
+        new_player = {
+            "name":self.name,
+            "level":0,
+            "xp": 0,
+            "total_xp": 0,
+            "missions_completed": 0
+        }
+
+        players = self.load_players()
+        players.append(new_player)
+
+        with open("players.json", "w", encoding="utf-8") as file:
+            json.dump(players, file, indent=4, ensure_ascii=False)
+
+
+    def load_players(self):
+        try:
+            with open("players.json", "r", encoding="utf-8") as file:
+                players = json.load(file)
+        except:
+            players = []
+
+        return players
+
+
+

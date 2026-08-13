@@ -1,3 +1,4 @@
+
 class Mission:
     def __init__(self, name, xp_reward, difficulty, completed=False):
         self.name = name
@@ -17,3 +18,4 @@ class Mission:
 
     def complete(self):
         self.completed = True
+    
