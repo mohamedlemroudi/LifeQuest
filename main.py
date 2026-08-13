@@ -1,3 +1,4 @@
+from Game import Game
 from Player import Player
 from Mission import Mission
 
@@ -33,58 +34,6 @@ def show_menu():
     print("0. Salir")
 
 
-def show_mission(missions_list):
-    position = 1
-    for mission in missions_list:
-        if not mission.completed:
-            print(f"{position}. {mission.name} | {mission.difficulty} | +{mission.xp_reward} XP")
-            position += 1
-
-    print("0. Volver al menú principal.")
-
-
-def mission_completed(player, mission_number, available_missions):
-    mission_selected = available_missions[mission_number - 1]
-
-    reward = mission_selected.calculate_reward()
-
-    mission_selected.complete()
-
-    print("Has completado:" + mission_selected.name)
-    print("Has ganado " + str(reward) + " XP.")
-
-    player.complete_mission(reward)
-
-
-def ask_mission(player, missions_list):
-    continuar = True
-    
-    while continuar:
-        show_mission(missions_list)
-
-        try:
-            mission_number = int(input("Elige una misión: "))
-
-            available_missions = [
-                mission
-                for mission in missions_list
-                if not mission.completed
-            ]
-
-            if 1 <= mission_number <= len(available_missions):
-                mission_completed(player, mission_number, available_missions)
-    
-            elif mission_number == 0:
-                print("Volviendo al menú principal.")
-                continuar = False
-    
-            else:
-                print("No existe esa misión.")
-
-        except ValueError:
-            print("Respuesta no válida.")
-
-
 missions_list = [
     Mission("Estudiar Python", 50, "easy"),
     Mission("Hacer ejercicio", 30, "medium"),
@@ -95,6 +44,8 @@ missions_list = [
 
 player_1 = Player("Mohamed")
 
+game = Game(player_1, missions_list)
+
 while True:
     show_menu()
     choice = input("Elige una opción: ")
@@ -102,7 +53,7 @@ while True:
     if choice == "1":
         show_player(player_1)
     elif choice == "2":
-        ask_mission(player_1, missions_list)
+        game.ask_mission()
     elif choice == "3":
         show_stats(player_1)
     elif choice == "0":
