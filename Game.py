@@ -95,6 +95,7 @@ class Game:
             elif choice == "3":
                 self.show_stats()
             elif choice == "0":
+                self.player.update_player()
                 print("Saliendo del juego.")
                 break
             else:

@@ -20,8 +20,10 @@ player_1 = Player("Mohamed")
 
 player_2 = Player("Pep")
 
-game = Game(player_1, missions_list)
+# player_2 = Player("Pep")
 
-game.save_mission(missions_data_list)
+game = Game(player_2, missions_list)
 
-# game.start()
+# game.save_mission(missions_data_list)
+
+game.start()
