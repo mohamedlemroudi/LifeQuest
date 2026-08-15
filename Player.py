@@ -41,13 +41,3 @@ class Player:
         self.missions_completed += 1
         self.check_level_up()
         self.list_missions_completed.append(name)
-
-
-
-                
-
-
-
-    
-
-

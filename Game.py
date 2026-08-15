@@ -31,18 +31,15 @@ class Game:
 
     def show_mission(self):
         position = 1
-        completed = False
 
         for mission in self.missions_list:
-            for mission_completed in self.player.list_missions_completed:
-                    if mission.name == mission_completed:
-                        completed = True
-                    
-            if not completed:
-                print(f"{position}. {mission.name} | {mission.difficulty} | +{mission.xp_reward} XP")
+            if mission.name not in self.player.list_missions_completed:
+                print(
+                    f"{position}. {mission.name} | "
+                    f"{mission.difficulty} | "
+                    f"+{mission.calculate_reward()} XP"
+                )
                 position += 1
-            else:
-                completed = False
 
         print("0. Volver al menú principal.")
 
