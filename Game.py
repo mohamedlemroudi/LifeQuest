@@ -1,3 +1,5 @@
+from SaveManager import SaveManager
+
 class Game:
     def __init__(self, player, missions_list):
         self.player = player
@@ -83,7 +85,8 @@ class Game:
 
     def start(self):
         while True:
-            self.player.find_player()
+            save_player = SaveManager(self.player)
+            save_player.find_player()
             self.show_menu()
             choice = input("Elige una opción: ")
 
@@ -94,7 +97,7 @@ class Game:
             elif choice == "3":
                 self.show_stats()
             elif choice == "0":
-                self.player.update_player()
+                save_player.update_player()
                 print("Saliendo del juego.")
                 break
             else:
