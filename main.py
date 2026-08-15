@@ -4,10 +4,10 @@ from Mission import Mission
 
 
 missions_list = [
-    Mission("Estudiar Python", 50, "easy"),
-    Mission("Hacer ejercicio", 30, "medium"),
-    Mission("Leer 20 páginas", 100, "difficult"),
-    Mission("Meditar", 175, "difficult")
+    Mission(1, "Estudiar Python", 50, "easy"),
+    Mission(2, "Hacer ejercicio", 30, "medium"),
+    Mission(3, "Leer 20 páginas", 100, "difficult"),
+    Mission(4, "Meditar", 175, "difficult")
 ]
 
 player_1 = Player("Mohamed")

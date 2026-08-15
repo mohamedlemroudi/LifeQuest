@@ -46,7 +46,7 @@ class Game:
     def mission_completed(self, selected_mission):
         reward = selected_mission.calculate_reward()
 
-        self.player.complete_mission(selected_mission.name, reward)
+        self.player.complete_mission(selected_mission.id, reward)
 
         print(f"Has completado: {selected_mission.name}")
         print(f"Has ganado {reward} XP.")
@@ -56,7 +56,7 @@ class Game:
         return [
             mission
             for mission in self.missions_list
-            if mission.name not in self.player.list_missions_completed
+            if mission.id not in self.player.list_missions_completed
         ]
 
 

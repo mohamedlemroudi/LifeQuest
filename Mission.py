@@ -1,5 +1,6 @@
 class Mission:
-    def __init__(self, name, xp_reward, difficulty):
+    def __init__(self, id, name, xp_reward, difficulty):
+        self.id = id
         self.name = name
         self.xp_reward = xp_reward
         self.difficulty = difficulty

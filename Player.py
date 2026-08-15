@@ -36,8 +36,8 @@ class Player:
             print(f"¡Has ganado {levels_gained} niveles!")
 
 
-    def complete_mission(self, name, reward):
+    def complete_mission(self, id_mission, reward):
         self.gain_xp(reward)
         self.missions_completed += 1
+        self.list_missions_completed.append(id_mission)
         self.check_level_up()
-        self.list_missions_completed.append(name)
