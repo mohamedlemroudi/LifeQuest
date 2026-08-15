@@ -55,21 +55,11 @@ class Game:
 
 
     def get_available_missions(self):
-        list_available = []
-        completed = False
-
-        for mission in self.missions_list:
-            for m_completed in self.player.list_missions_completed:
-                if mission.name == m_completed:
-                    completed = True
-                    
-
-            if not completed:
-                list_available.append(mission)
-            else:
-                completed = False
-
-        return list_available
+        return [
+            mission
+            for mission in self.missions_list
+            if mission.name not in self.player.list_missions_completed
+        ]
 
 
     def ask_mission(self):

@@ -1,4 +1,3 @@
-
 class Mission:
     def __init__(self, name, xp_reward, difficulty):
         self.name = name
@@ -14,5 +13,3 @@ class Mission:
         }
 
         return self.xp_reward * multiplier[self.difficulty]
-
-    

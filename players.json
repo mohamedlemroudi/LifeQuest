@@ -1,15 +1,13 @@
 [
     {
         "name": "Mohamed",
-        "level": 7.0,
-        "xp": 45.0,
-        "total_xp": 645.0,
-        "missions_completed": 4,
+        "level": 1,
+        "xp": 95.0,
+        "total_xp": 95.0,
+        "missions_completed": 2,
         "list_missions_completed": [
             "Estudiar Python",
-            "Hacer ejercicio",
-            "Leer 20 páginas",
-            "Meditar"
+            "Hacer ejercicio"
         ]
     }
 ]
