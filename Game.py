@@ -30,16 +30,14 @@ class Game:
 
 
     def show_mission(self):
-        position = 1
+        available_missions = self.get_available_missions()
 
-        for mission in self.missions_list:
-            if mission.name not in self.player.list_missions_completed:
-                print(
-                    f"{position}. {mission.name} | "
-                    f"{mission.difficulty} | "
-                    f"+{mission.calculate_reward()} XP"
-                )
-                position += 1
+        for position, mission in enumerate(available_missions, 1):
+            print(
+                f"{position}. {mission.name} | "
+                f"{mission.difficulty} | "
+                f"+{mission.calculate_reward()} XP"
+            )
 
         print("0. Volver al menú principal.")
 
