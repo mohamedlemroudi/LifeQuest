@@ -8,11 +8,12 @@ class SaveManager:
 
     def create_player(self, players):
         new_player = {
-            "name":self.name,
+            "name":self.player.name,
             "level":1,
             "xp": 0,
             "total_xp": 0,
-            "missions_completed": 0
+            "missions_completed": 0,
+            "list_missions_completed": []
         }
 
         players.append(new_player)
@@ -25,6 +26,7 @@ class SaveManager:
         self.player.xp = new_player["xp"]
         self.player.total_xp = new_player["total_xp"]
         self.player.missions_completed = new_player["missions_completed"]
+        self.player.list_missions_completed = new_player["list_missions_completed"]
 
         return new_player
     
@@ -54,6 +56,7 @@ class SaveManager:
                 player["xp"] = self.player.xp
                 player["total_xp"] = self.player.total_xp
                 player["missions_completed"] = self.player.missions_completed
+                player["list_missions_completed"] = self.player.list_missions_completed
 
                 break
 
@@ -70,6 +73,7 @@ class SaveManager:
                 self.player.xp = player["xp"]
                 self.player.total_xp = player["total_xp"]
                 self.player.missions_completed = player["missions_completed"]
+                self.player.list_missions_completed = player["list_missions_completed"]
 
                 return player
 

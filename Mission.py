@@ -1,10 +1,9 @@
 
 class Mission:
-    def __init__(self, name, xp_reward, difficulty, completed=False):
+    def __init__(self, name, xp_reward, difficulty):
         self.name = name
         self.xp_reward = xp_reward
         self.difficulty = difficulty
-        self.completed = completed
 
     def calculate_reward(self):
 
@@ -16,6 +15,4 @@ class Mission:
 
         return self.xp_reward * multiplier[self.difficulty]
 
-    def complete(self):
-        self.completed = True
     

@@ -31,29 +31,48 @@ class Game:
 
     def show_mission(self):
         position = 1
+        completed = False
+
         for mission in self.missions_list:
-            if not mission.completed:
+            for mission_completed in self.player.list_missions_completed:
+                    if mission.name == mission_completed:
+                        completed = True
+                    
+            if not completed:
                 print(f"{position}. {mission.name} | {mission.difficulty} | +{mission.xp_reward} XP")
                 position += 1
+            else:
+                completed = False
 
         print("0. Volver al menú principal.")
+
+    
 
     def mission_completed(self, selected_mission):
         reward = selected_mission.calculate_reward()
 
-        selected_mission.complete()
+        self.player.complete_mission(selected_mission.name, reward)
 
         print(f"Has completado: {selected_mission.name}")
         print(f"Has ganado {reward} XP.")
 
-        self.player.complete_mission(reward)
 
     def get_available_missions(self):
-        return [
-            mission
-            for mission in self.missions_list
-            if not mission.completed
-        ]
+        list_available = []
+        completed = False
+
+        for mission in self.missions_list:
+            for m_completed in self.player.list_missions_completed:
+                if mission.name == m_completed:
+                    completed = True
+                    
+
+            if not completed:
+                list_available.append(mission)
+            else:
+                completed = False
+
+        return list_available
 
 
     def ask_mission(self):
@@ -61,7 +80,6 @@ class Game:
         
         while continuar:
             self.show_mission()
-
             try:
                 mission_number = int(input("Elige una misión: "))
 
@@ -84,9 +102,9 @@ class Game:
 
 
     def start(self):
+        save_player = SaveManager(self.player)
+        save_player.find_player()
         while True:
-            save_player = SaveManager(self.player)
-            save_player.find_player()
             self.show_menu()
             choice = input("Elige una opción: ")
 
