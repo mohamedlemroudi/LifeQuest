@@ -83,6 +83,7 @@ class Game:
 
     def start(self):
         while True:
+            self.player.find_player()
             self.show_menu()
             choice = input("Elige una opción: ")
 

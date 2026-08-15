@@ -12,9 +12,6 @@ missions_list = [
 
 player_1 = Player("Mohamed")
 
-player_2 = Player("Pep")
-
-
 game = Game(player_1, missions_list)
 
 game.start()
