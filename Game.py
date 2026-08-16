@@ -115,32 +115,49 @@ class Game:
             else:
                 print("Opción no válida. Por favor, elige otra opción.")
 
+    def ask_initial_choice(self):
+        while True:
+            try:
+                self.show_initial_menu()
+                initial_choice = int(input("Elige una opción: "))
+                return initial_choice
+            except ValueError:
+                print("Respuesta no válida.")
+
+
+    def login(self):
+        player_manager = PlayerManager()
+        player_name = input("Introduce el nombre del jugador: ")
+        self.player = player_manager.find_player(player_name)
+
+        if (self.player != ""):
+            print("Login CORRECT!")
+            self.options_menu(player_manager)
+        else:
+            print("Login INCORRECT!")
+
+    def signin(self):
+        player_manager = PlayerManager()
+        player_name = input("Introduce el nombre del jugador: ")
+        self.player = player_manager.find_player(player_name)
+        
+        if(self.player == ""):
+            self.player = player_manager.create_player(player_name)
+            print(f"Se ha creado el jugador {self.player.name}")
+        else:
+            print("El jugador ja existe.")
 
     def start(self):
         while True:
-            self.show_initial_menu()
-            choice = int(input("Elige una opción: "))
-            
-    
-            if (choice == 1 or choice ==2):
-                player_manager = PlayerManager()
-                player_name = input("Introduce el nombre del jugador: ")
-                self.player = player_manager.find_player(player_name)
+            initial_choice = self.ask_initial_choice()
 
-                if(choice == 1):
-                    if (self.player != ""):
-                        print("Login CORRECT!")
-                        self.options_menu(player_manager)
-                    else:
-                        print("Login INCORRECT!")
-                elif(choice == 2):
-                    if(self.player == ""):
-                        self.player = player_manager.create_player(player_name)
-                        print(f"Se ha creado el jugador {self.player.name}")
-                    else:
-                        print("El jugador ja existe.")
+            if(initial_choice == 1):
+                self.login()
+                
+            elif(initial_choice == 2):
+                self.signin()
 
-            elif (choice == 0):
+            elif (initial_choice == 0):
                 print("Salir del programa.")
                 break
             
