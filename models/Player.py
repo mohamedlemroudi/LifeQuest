@@ -7,6 +7,15 @@ class Player:
         self.missions_completed = 0
         self.list_missions_completed = []
 
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "level": self.level,
+            "xp": self.xp,
+            "total_xp": self.total_xp,
+            "missions_completed": self.missions_completed,
+            "list_missions_completed": self.list_missions_completed
+        }
 
     def show_player(self):
         print("Jugador: " + self.name)

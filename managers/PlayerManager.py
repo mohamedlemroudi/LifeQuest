@@ -14,25 +14,10 @@ class PlayerManager:
         players = self.load_players()
         player_obj = Player(name)
 
-        new_player = {
-            "name": name,
-            "level":1,
-            "xp": 0,
-            "total_xp": 0,
-            "missions_completed": 0,
-            "list_missions_completed": []
-        }
-
-        players.append(new_player)
+        players.append(player_obj.to_dict())
 
         with open(self.players_file, "w", encoding="utf-8") as file:
             json.dump(players, file, indent=4, ensure_ascii=False)
-
-        player_obj.level = new_player["level"]
-        player_obj.xp = new_player["xp"]
-        player_obj.total_xp = new_player["total_xp"]
-        player_obj.missions_completed = new_player["missions_completed"]
-        player_obj.list_missions_completed = new_player["list_missions_completed"]
 
         return player_obj
     

@@ -1,43 +1,6 @@
 [
     {
-        "name": "Mohamed",
-        "level": 3.0,
-        "xp": 95.0,
-        "total_xp": 295.0,
-        "missions_completed": 3,
-        "list_missions_completed": [
-            1,
-            2,
-            3
-        ]
-    },
-    {
-        "name": "Pep",
-        "level": 3.0,
-        "xp": 95.0,
-        "total_xp": 295.0,
-        "missions_completed": 3,
-        "list_missions_completed": [
-            1,
-            2,
-            3
-        ]
-    },
-    {
-        "name": "Joan",
-        "level": 7.0,
-        "xp": 45.0,
-        "total_xp": 645.0,
-        "missions_completed": 4,
-        "list_missions_completed": [
-            1,
-            2,
-            3,
-            4
-        ]
-    },
-    {
-        "name": "Luisa",
+        "name": "Bilal",
         "level": 1,
         "xp": 95.0,
         "total_xp": 95.0,
