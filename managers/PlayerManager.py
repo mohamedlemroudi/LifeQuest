@@ -39,14 +39,9 @@ class PlayerManager:
     def update_player(self, player_obj):
         players = self.load_players()
 
-        for player in players:
+        for i, player in enumerate(players, start=0):
             if player["name"] == player_obj.name:
-                player["level"] = player_obj.level
-                player["xp"] = player_obj.xp
-                player["total_xp"] = player_obj.total_xp
-                player["missions_completed"] = player_obj.missions_completed
-                player["list_missions_completed"] = player_obj.list_missions_completed
-
+                players[i] = player_obj.to_dict()
                 break
 
         with open(self.players_file, "w", encoding="utf-8") as file:

@@ -1,11 +1,12 @@
 class Player:
-    def __init__(self, name):
+    def __init__(self, name, level = 0, xp = 0, total_xp = 0, 
+                 missions_completed = 0, list_missions_completed = []):
         self.name = name
-        self.level = 1
-        self.xp = 0
-        self.total_xp = 0
-        self.missions_completed = 0
-        self.list_missions_completed = []
+        self.level = level
+        self.xp = xp
+        self.total_xp = total_xp
+        self.missions_completed = missions_completed
+        self.list_missions_completed = list_missions_completed
 
     def to_dict(self):
         return {
@@ -16,6 +17,17 @@ class Player:
             "missions_completed": self.missions_completed,
             "list_missions_completed": self.list_missions_completed
         }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            data["name"],
+            data["level"],
+            data["xp"],
+            data["total_xp"],
+            data["missions_completed"],
+            data["list_missions_completed"]
+        )
 
     def show_player(self):
         print("Jugador: " + self.name)
