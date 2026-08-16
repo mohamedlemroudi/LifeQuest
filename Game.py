@@ -1,9 +1,10 @@
 from PlayerManager import PlayerManager
+from MissionManager import MissionManager
 
 class Game:
-    def __init__(self, player, missions_list):
+    def __init__(self, player):
         self.player = player
-        self.missions_list = missions_list
+        self.missions_list = []
 
     def show_menu(self):
         print("====================")
@@ -89,6 +90,9 @@ class Game:
     def start(self):
         save_player = PlayerManager(self.player)
         save_player.find_player()
+
+        missions_manager = MissionManager()
+        self.missions_list = missions_manager.create_missions()
         while True:
             self.show_menu()
             choice = input("Elige una opción: ")

@@ -1,4 +1,5 @@
 import json
+from Mission import Mission
 
 class MissionManager:
     def __init__(self):
@@ -17,4 +18,17 @@ class MissionManager:
             missions = []
 
         return missions
+
+
+    def create_missions(self):
+        missions = self.load_missions()
+        list_missions = []
+        
+        for mission in missions:
+            mission_obj = Mission(mission["id"], mission["name"], 
+                                    mission["xp_reward"], mission["difficulty"])
+
+            list_missions.append(mission_obj)
                 
+
+        return list_missions
