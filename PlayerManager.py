@@ -35,9 +35,7 @@ class PlayerManager:
         try:
             with open("players.json", "r", encoding="utf-8") as file:
                 players = json.load(file)
-
-            # Si el JSON todavía tiene un solo jugador
-            # lo convertimos automáticamente en lista
+            
             if isinstance(players, dict):
                 players = [players]
 
