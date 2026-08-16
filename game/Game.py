@@ -1,5 +1,5 @@
-from PlayerManager import PlayerManager
-from MissionManager import MissionManager
+from managers.PlayerManager import PlayerManager
+from managers.MissionManager import MissionManager
 
 class Game:
     def __init__(self):
@@ -127,7 +127,7 @@ class Game:
 
     def login(self):
         player_manager = PlayerManager()
-        player_name = input("Introduce el nombre del jugador: ")
+        player_name = input("Introduce el nombre del jugadora: ")
         self.player = player_manager.find_player(player_name)
 
         if (self.player != ""):
@@ -150,7 +150,6 @@ class Game:
     def start(self):
         while True:
             initial_choice = self.ask_initial_choice()
-
             if(initial_choice == 1):
                 self.login()
                 

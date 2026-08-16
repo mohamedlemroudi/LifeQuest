@@ -1,7 +1,11 @@
 import json
-from Player import Player
+from pathlib import Path
+from models.Player import Player
+
 
 class PlayerManager:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    players_file = BASE_DIR / "data" / "players.json"
 
     def __init__(self):
         pass
@@ -21,7 +25,7 @@ class PlayerManager:
 
         players.append(new_player)
 
-        with open("players.json", "w", encoding="utf-8") as file:
+        with open(self.players_file, "w", encoding="utf-8") as file:
             json.dump(players, file, indent=4, ensure_ascii=False)
 
         player_obj.level = new_player["level"]
@@ -35,7 +39,7 @@ class PlayerManager:
 
     def load_players(self):
         try:
-            with open("players.json", "r", encoding="utf-8") as file:
+            with open(self.players_file, "r", encoding="utf-8") as file:
                 players = json.load(file)
 
             if isinstance(players, dict):
@@ -60,7 +64,7 @@ class PlayerManager:
 
                 break
 
-        with open("players.json", "w", encoding="utf-8") as file:
+        with open(self.players_file, "w", encoding="utf-8") as file:
             json.dump(players, file, indent=4, ensure_ascii=False)
 
     def find_player(self, name):
