@@ -5,7 +5,6 @@ class MissionManager:
     def __init__(self):
         pass
 
-
     def load_missions(self):
         try:
             with open("missions.json", "r", encoding="utf-8") as file:

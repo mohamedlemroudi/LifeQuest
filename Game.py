@@ -2,8 +2,8 @@ from PlayerManager import PlayerManager
 from MissionManager import MissionManager
 
 class Game:
-    def __init__(self, player):
-        self.player = player
+    def __init__(self):
+        self.player = ""
         self.missions_list = []
 
     def show_menu(self):
@@ -86,13 +86,18 @@ class Game:
             except ValueError:
                 print("Respuesta no válida.")
 
+    def show_initial_menu(self):
+        print("====================")
+        print("     LIFEQUEST")
+        print("====================")
+        print("1. Iniciar sesión")
+        print("2. Crear jugador")
+        print("0. Salir")
 
-    def start(self):
-        save_player = PlayerManager(self.player)
-        save_player.find_player()
-
+    def options_menu(self, player_manager):
         missions_manager = MissionManager()
         self.missions_list = missions_manager.create_missions()
+
         while True:
             self.show_menu()
             choice = input("Elige una opción: ")
@@ -104,8 +109,41 @@ class Game:
             elif choice == "3":
                 self.show_stats()
             elif choice == "0":
-                save_player.update_player()
+                player_manager.update_player(self.player)
                 print("Saliendo del juego.")
                 break
             else:
                 print("Opción no válida. Por favor, elige otra opción.")
+
+
+    def start(self):
+        while True:
+            self.show_initial_menu()
+            choice = int(input("Elige una opción: "))
+            
+    
+            if (choice == 1 or choice ==2):
+                player_manager = PlayerManager()
+                player_name = input("Introduce el nombre del jugador: ")
+                self.player = player_manager.find_player(player_name)
+
+                if(choice == 1):
+                    if (self.player != ""):
+                        print("Login CORRECT!")
+                        self.options_menu(player_manager)
+                    else:
+                        print("Login INCORRECT!")
+                elif(choice == 2):
+                    if(self.player == ""):
+                        self.player = player_manager.create_player(player_name)
+                        print(f"Se ha creado el jugador {self.player.name}")
+                    else:
+                        print("El jugador ja existe.")
+
+            elif (choice == 0):
+                print("Salir del programa.")
+                break
+            
+            else:
+                print("No existe esta opcion.")
+            

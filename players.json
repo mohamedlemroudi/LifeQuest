@@ -1,19 +1,6 @@
 [
     {
         "name": "Mohamed",
-        "level": 7.0,
-        "xp": 45.0,
-        "total_xp": 645.0,
-        "missions_completed": 4,
-        "list_missions_completed": [
-            1,
-            2,
-            3,
-            4
-        ]
-    },
-    {
-        "name": "Adam",
         "level": 1,
         "xp": 95.0,
         "total_xp": 95.0,
