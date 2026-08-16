@@ -133,7 +133,7 @@ class Game:
         player_name = input("Introduce el nombre del jugadora: ")
         self.player = player_manager.find_player(player_name)
 
-        if (self.player != ""):
+        if self.player is not None:
             print("Login CORRECT!")
             self.options_menu(player_manager)
         else:
@@ -144,7 +144,7 @@ class Game:
         player_name = input("Introduce el nombre del jugador: ")
         self.player = player_manager.find_player(player_name)
         
-        if(self.player == ""):
+        if self.player is None:
             self.player = player_manager.create_player(player_name)
             print(f"Se ha creado el jugador {self.player.name}")
         else:

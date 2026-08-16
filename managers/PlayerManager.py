@@ -81,4 +81,4 @@ class PlayerManager:
     
                     return player_obj
     
-            return ""
+            return None
