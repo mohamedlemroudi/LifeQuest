@@ -120,7 +120,10 @@ class Game:
             try:
                 self.show_initial_menu()
                 initial_choice = int(input("Elige una opción: "))
-                return initial_choice
+                if (initial_choice in (1,2, 0)):
+                    return initial_choice
+                else:
+                    print("No existe esta opcion.")
             except ValueError:
                 print("Respuesta no válida.")
 
@@ -158,8 +161,4 @@ class Game:
 
             elif (initial_choice == 0):
                 print("Salir del programa.")
-                break
-            
-            else:
-                print("No existe esta opcion.")
-            
+                break     
