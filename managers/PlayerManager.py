@@ -49,16 +49,9 @@ class PlayerManager:
 
     def find_player(self, name):
             players = self.load_players()
-            player_obj = Player(name)
     
             for player in players:
                 if player["name"] == name:
-                    player_obj.level = player["level"]
-                    player_obj.xp = player["xp"]
-                    player_obj.total_xp = player["total_xp"]
-                    player_obj.missions_completed = player["missions_completed"]
-                    player_obj.list_missions_completed = player["list_missions_completed"]
-    
-                    return player_obj
+                    return Player.from_dict(player)
     
             return None

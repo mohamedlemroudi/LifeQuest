@@ -1,13 +1,15 @@
 [
     {
         "name": "Johan",
-        "level": 0,
-        "xp": 95.0,
-        "total_xp": 95.0,
-        "missions_completed": 2,
+        "level": 6.0,
+        "xp": 45.0,
+        "total_xp": 645.0,
+        "missions_completed": 4,
         "list_missions_completed": [
             1,
-            2
+            2,
+            3,
+            4
         ]
     }
 ]
