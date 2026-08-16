@@ -1,4 +1,4 @@
-from SaveManager import SaveManager
+from PlayerManager import PlayerManager
 
 class Game:
     def __init__(self, player, missions_list):
@@ -87,7 +87,7 @@ class Game:
 
 
     def start(self):
-        save_player = SaveManager(self.player)
+        save_player = PlayerManager(self.player)
         save_player.find_player()
         while True:
             self.show_menu()

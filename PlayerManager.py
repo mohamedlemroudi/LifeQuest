@@ -1,6 +1,6 @@
 import json
 
-class SaveManager:
+class PlayerManager:
 
     def __init__(self, player):
         self.player = player   
