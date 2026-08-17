@@ -28,10 +28,7 @@ class MissionManager:
         list_missions = []
         
         for mission in missions:
-            mission_obj = Mission(mission["id"], mission["name"], 
-                                    mission["xp_reward"], mission["difficulty"])
 
-            list_missions.append(mission_obj)
+            list_missions.append(Mission.from_dict(mission))
                 
-
         return list_missions
