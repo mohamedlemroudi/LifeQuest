@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from models.Player import Player
+from storage.JsonStorage import JsonStorage
 
 
 class PlayerManager:
@@ -8,47 +9,32 @@ class PlayerManager:
     players_file = BASE_DIR / "data" / "players.json"
 
     def __init__(self):
-        pass
+        self.storage = JsonStorage(self.players_file)
 
     def create_player(self, name):
-        players = self.load_players()
+        players = self.storage.load()
         player_obj = Player(name)
 
         players.append(player_obj.to_dict())
 
-        with open(self.players_file, "w", encoding="utf-8") as file:
-            json.dump(players, file, indent=4, ensure_ascii=False)
+        self.storage.save(players)
 
         return player_obj
     
 
-    def load_players(self):
-        try:
-            with open(self.players_file, "r", encoding="utf-8") as file:
-                players = json.load(file)
-
-            if isinstance(players, dict):
-                players = [players]
-
-        except (FileNotFoundError, json.JSONDecodeError):
-            players = []
-
-        return players
-
-
     def update_player(self, player_obj):
-        players = self.load_players()
+        players = self.storage.load()
 
         for i, player in enumerate(players, start=0):
             if player["name"] == player_obj.name:
                 players[i] = player_obj.to_dict()
                 break
 
-        with open(self.players_file, "w", encoding="utf-8") as file:
-            json.dump(players, file, indent=4, ensure_ascii=False)
+        self.storage.save(players)
+    
 
     def find_player(self, name):
-            players = self.load_players()
+            players = self.storage.load()
     
             for player in players:
                 if player["name"] == name:
