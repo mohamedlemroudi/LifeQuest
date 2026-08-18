@@ -60,6 +60,16 @@ class Game:
             if mission.id not in self.player.list_missions_completed
         ]
 
+    def get_mission_by_position(self, mission_number):
+        available_missions = self.get_available_missions()
+        
+        if 1 <= mission_number <= len(available_missions):
+            selected_mission = available_missions[mission_number - 1]
+            
+            self.mission_completed(selected_mission)
+        else:
+            print("No existe esa misión.")
+
 
     def ask_mission(self):
         continuar = True
@@ -68,20 +78,10 @@ class Game:
             self.show_mission()
             try:
                 mission_number = int(input("Elige una misión: "))
-
-                available_missions = self.get_available_missions()
-
-                if 1 <= mission_number <= len(available_missions):
-                    selected_mission = available_missions[mission_number - 1]
-                    
-                    self.mission_completed(selected_mission)
-        
-                elif mission_number == 0:
-                    print("Volviendo al menú principal.")
-                    continuar = False
-        
+                if (mission_number > 0):
+                    self.get_mission_by_position(mission_number)
                 else:
-                    print("No existe esa misión.")
+                    continuar = False
 
             except ValueError:
                 print("Respuesta no válida.")
