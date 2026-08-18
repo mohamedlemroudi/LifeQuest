@@ -3,6 +3,25 @@ class UI:
     def __init__(self):
         pass
 
+    def show_initial_menu(self):
+        print("====================")
+        print("     LIFEQUEST")
+        print("====================")
+        print("1. Iniciar sesión")
+        print("2. Crear jugador")
+        print("0. Salir")
+
+    def ask_initial_choice(self):
+        while True:
+            try:
+                initial_choice = int(input("Elige una opción: "))
+                if (initial_choice in (1,2, 0)):
+                    return initial_choice
+                else:
+                    print("No existe esta opcion.")
+            except ValueError:
+                print("Respuesta no válida.")
+
     def show_menu(self):
         print("====================")
         print("     LIFEQUEST")

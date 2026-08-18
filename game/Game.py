@@ -50,15 +50,6 @@ class Game:
             else:
                 continuar = False
 
-        
-    def show_initial_menu(self):
-        print("====================")
-        print("     LIFEQUEST")
-        print("====================")
-        print("1. Iniciar sesión")
-        print("2. Crear jugador")
-        print("0. Salir")
-
     def options_menu(self, player_manager):
         missions_manager = MissionManager()
         self.missions_list = missions_manager.create_missions()
@@ -79,19 +70,6 @@ class Game:
                 break
             else:
                 print("Opción no válida. Por favor, elige otra opción.")
-
-    def ask_initial_choice(self):
-        while True:
-            try:
-                self.show_initial_menu()
-                initial_choice = int(input("Elige una opción: "))
-                if (initial_choice in (1,2, 0)):
-                    return initial_choice
-                else:
-                    print("No existe esta opcion.")
-            except ValueError:
-                print("Respuesta no válida.")
-
 
     def login(self):
         player_manager = PlayerManager()
@@ -117,7 +95,8 @@ class Game:
 
     def start(self):
         while True:
-            initial_choice = self.ask_initial_choice()
+            self.ui.show_initial_menu()
+            initial_choice = self.ui.ask_initial_choice()
             if(initial_choice == 1):
                 self.login()
                 
