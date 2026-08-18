@@ -5,11 +5,8 @@ from storage.JsonStorage import JsonStorage
 
 
 class PlayerManager:
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    players_file = BASE_DIR / "data" / "players.json"
-
     def __init__(self):
-        self.storage = JsonStorage(self.players_file)
+        self.storage = JsonStorage("players.json")
 
     def create_player(self, name):
         players = self.storage.load()

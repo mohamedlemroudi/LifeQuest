@@ -1,8 +1,12 @@
 import json
+from pathlib import Path
 
 class JsonStorage:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    basic_path = BASE_DIR / "data"
+
     def __init__(self, file_path):
-        self.file_path = file_path
+        self.file_path = self.basic_path / file_path
 
     def load(self):
         try:

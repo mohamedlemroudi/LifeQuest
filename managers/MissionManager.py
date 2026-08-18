@@ -4,11 +4,8 @@ from models.Mission import Mission
 from storage.JsonStorage import JsonStorage
 
 class MissionManager:
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    missions_file = BASE_DIR / "data" / "missions.json"
-    
     def __init__(self):
-        self.storage = JsonStorage(self.missions_file)
+        self.storage = JsonStorage("missions.json")
 
     def create_missions(self):
         missions = self.storage.load()
