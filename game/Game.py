@@ -8,20 +8,6 @@ class Game:
         self.missions_list = []
         self.ui = UI()
 
-    def show_mission(self):
-        available_missions = self.get_available_missions()
-
-        for position, mission in enumerate(available_missions, 1):
-            print(
-                f"{position}. {mission.name} | "
-                f"{mission.difficulty} | "
-                f"+{mission.calculate_reward()} XP"
-            )
-
-        print("0. Volver al menú principal.")
-
-    
-
     def mission_completed(self, selected_mission):
         reward = selected_mission.calculate_reward()
 
@@ -53,17 +39,18 @@ class Game:
         continuar = True
         
         while continuar:
-            self.show_mission()
-            try:
-                mission_number = int(input("Elige una misión: "))
-                if (mission_number > 0):
-                    self.get_mission_by_position(mission_number)
-                else:
-                    continuar = False
+            available_missions = self.get_available_missions()
 
-            except ValueError:
-                print("Respuesta no válida.")
+            self.ui.show_missions(available_missions)
 
+            mission_number = self.ui.ask_missions()
+
+            if (mission_number > 0):
+                self.get_mission_by_position(mission_number)
+            else:
+                continuar = False
+
+        
     def show_initial_menu(self):
         print("====================")
         print("     LIFEQUEST")

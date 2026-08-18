@@ -32,3 +32,21 @@ class UI:
                 average_xp = 0
     
             print(f"XP media por misión: {average_xp}")
+
+    def show_missions(self, missions):
+        for position, mission in enumerate(missions, 1):
+            print(
+                f"{position}. {mission.name} | "
+                f"{mission.difficulty} | "
+                f"+{mission.calculate_reward()} XP"
+            )
+
+        print("0. Volver al menú principal.")
+
+
+    def ask_missions(self):
+        try:
+            return int(input("Elige una misión: "))
+
+        except ValueError:
+            print("Respuesta no válida.")
