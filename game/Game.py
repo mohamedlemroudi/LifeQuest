@@ -1,34 +1,12 @@
 from managers.PlayerManager import PlayerManager
 from managers.MissionManager import MissionManager
+from ui.UI import UI
 
 class Game:
     def __init__(self):
         self.player = ""
         self.missions_list = []
-
-    def show_menu(self):
-        print("====================")
-        print("     LIFEQUEST")
-        print("====================")
-        print("1. Ver jugador")
-        print("2. Completar misión")
-        print("3. Ver estadísticas")
-        print("0. Salir")
-
-    def show_stats(self):
-        print(f"Jugador: {self.player.name}")
-        print(f"Nivel: {self.player.level}")
-        print(f"XP actual: {self.player.xp}")
-        print(f"XP total: {self.player.total_xp}")
-        print(f"Misiones completadas: {self.player.missions_completed}")
-
-        if self.player.missions_completed > 0:
-            average_xp = self.player.total_xp / self.player.missions_completed
-        else:
-            average_xp = 0
-
-        print(f"XP media por misión: {average_xp}")
-
+        self.ui = UI()
 
     def show_mission(self):
         available_missions = self.get_available_missions()
@@ -99,15 +77,15 @@ class Game:
         self.missions_list = missions_manager.create_missions()
 
         while True:
-            self.show_menu()
+            self.ui.show_menu()
             choice = input("Elige una opción: ")
 
             if choice == "1":
-                self.player.show_player()
+                self.ui.show_player(self.player)
             elif choice == "2":
                 self.ask_mission()
             elif choice == "3":
-                self.show_stats()
+                self.ui.show_stats(self.player)
             elif choice == "0":
                 player_manager.update_player(self.player)
                 print("Saliendo del juego.")

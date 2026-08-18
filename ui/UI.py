@@ -1,6 +1,6 @@
 
 class UI:
-    def __init__():
+    def __init__(self):
         pass
 
     def show_menu(self):
