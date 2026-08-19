@@ -13,18 +13,6 @@ class Game:
 
         self.ui.show_mission_completed(selected_mission.name, reward)
 
-    def get_mission_by_position(self, mission_number):
-        player_missions_list = self.player.list_missions_completed
-        available_missions = self.mission_manager.get_available_missions(player_missions_list)
-        
-        if 1 <= mission_number <= len(available_missions):
-            selected_mission = available_missions[mission_number - 1]
-            
-            self.mission_completed(selected_mission)
-        else:
-            print("No existe esa misión.")
-
-
     def ask_mission(self):
         continuar = True
         
@@ -38,7 +26,14 @@ class Game:
             mission_number = self.ui.ask_missions()
 
             if (mission_number > 0):
-                self.get_mission_by_position(mission_number)
+                missions_completed = self.player.list_missions_completed
+                selected_mission = self.mission_manager.get_mission_by_position(mission_number, 
+                                                             missions_completed)
+                
+                if selected_mission is not None:
+                    self.mission_completed(selected_mission)
+                else:
+                    self.ui.not_found()
             else:
                 continuar = False
 

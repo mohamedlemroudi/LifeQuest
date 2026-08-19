@@ -114,6 +114,9 @@ class UI:
     def show_mission_completed(self, mission_name, reward):
         print(f"Has completado: {mission_name}")
         print(f"Has ganado {reward} XP.")
+
+    def not_found(self):
+        print("No existe esa misión.")
     
     
 

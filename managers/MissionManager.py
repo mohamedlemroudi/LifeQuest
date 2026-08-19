@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 from models.Mission import Mission
 from storage.JsonStorage import JsonStorage
 
@@ -25,3 +24,11 @@ class MissionManager:
                 for mission in self.list_missions
                 if mission.id not in player_missions_list
             ]
+
+    def get_mission_by_position(self, mission_number, missions_completed):
+        available_missions = self.get_available_missions(missions_completed)
+        
+        if 1 <= mission_number <= len(available_missions):
+            return available_missions[mission_number - 1]
+        else:
+            return None
