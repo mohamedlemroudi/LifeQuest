@@ -13,27 +13,33 @@ class Game:
 
         self.ui.show_mission_completed(selected_mission.name, reward)
 
+    def show_missions(self):
+        player_missions_list = self.player.list_missions_completed
+        available_missions = self.mission_manager.get_available_missions(
+                            player_missions_list)
+
+        self.ui.show_missions(available_missions)
+
+    def check_mission(self, mission_number):
+        missions_completed = self.player.list_missions_completed
+        selected_mission = self.mission_manager.get_mission_by_position(mission_number, 
+                                                        missions_completed)
+        
+        if selected_mission is not None:
+            self.mission_completed(selected_mission)
+        else:
+            self.ui.not_found()
+
     def ask_mission(self):
         continuar = True
-        
-        while continuar:
-            player_missions_list = self.player.list_missions_completed
-            available_missions = self.mission_manager.get_available_missions(
-                                player_missions_list)
 
-            self.ui.show_missions(available_missions)
+        while continuar:
+            self.show_missions()
 
             mission_number = self.ui.ask_missions()
 
             if (mission_number > 0):
-                missions_completed = self.player.list_missions_completed
-                selected_mission = self.mission_manager.get_mission_by_position(mission_number, 
-                                                             missions_completed)
-                
-                if selected_mission is not None:
-                    self.mission_completed(selected_mission)
-                else:
-                    self.ui.not_found()
+                self.check_mission(mission_number)
             else:
                 continuar = False
 

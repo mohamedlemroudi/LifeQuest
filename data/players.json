@@ -115,5 +115,26 @@
             3,
             4
         ]
+    },
+    {
+        "name": "Yossef",
+        "level": 0,
+        "xp": 0,
+        "total_xp": 0,
+        "missions_completed": 0,
+        "list_missions_completed": []
+    },
+    {
+        "name": "Laia",
+        "level": 6.0,
+        "xp": 45.0,
+        "total_xp": 645.0,
+        "missions_completed": 4,
+        "list_missions_completed": [
+            1,
+            2,
+            3,
+            4
+        ]
     }
 ]
