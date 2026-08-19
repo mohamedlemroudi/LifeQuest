@@ -13,16 +13,9 @@ class Game:
 
         self.ui.show_mission_completed(selected_mission.name, reward)
 
-
-    def get_available_missions(self):
-        return [
-            mission
-            for mission in self.missions_list
-            if mission.id not in self.player.list_missions_completed
-        ]
-
     def get_mission_by_position(self, mission_number):
-        available_missions = self.get_available_missions()
+        player_missions_list = self.player.list_missions_completed
+        available_missions = self.mission_manager.get_available_missions(player_missions_list)
         
         if 1 <= mission_number <= len(available_missions):
             selected_mission = available_missions[mission_number - 1]
@@ -36,7 +29,9 @@ class Game:
         continuar = True
         
         while continuar:
-            available_missions = self.get_available_missions()
+            player_missions_list = self.player.list_missions_completed
+            available_missions = self.mission_manager.get_available_missions(
+                                player_missions_list)
 
             self.ui.show_missions(available_missions)
 
@@ -48,7 +43,7 @@ class Game:
                 continuar = False
 
     def options_menu(self):
-        self.missions_list = self.mission_manager.create_missions()
+        self.missions_list = self.mission_manager.load_missions()
 
         while True:
             self.ui.show_menu()
