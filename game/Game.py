@@ -47,7 +47,7 @@ class Game:
             else:
                 continuar = False
 
-    def options_menu(self, player_manager):
+    def options_menu(self):
         self.missions_list = self.mission_manager.create_missions()
 
         while True:
@@ -64,7 +64,7 @@ class Game:
                 self.ui.show_stats(self.player)
                 
             elif choice == 0:
-                player_manager.update_player(self.player)
+                self.player_manager.update_player(self.player)
                 break
 
     def login(self):
@@ -73,7 +73,7 @@ class Game:
 
         if self.player is not None:
             self.ui.show_result_login(True)
-            self.options_menu(self.player_manager)
+            self.options_menu()
         else:
             self.ui.show_result_login(False)
 
