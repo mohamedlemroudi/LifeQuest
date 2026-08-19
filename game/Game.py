@@ -13,8 +13,7 @@ class Game:
 
         self.player.complete_mission(selected_mission.id, reward)
 
-        print(f"Has completado: {selected_mission.name}")
-        print(f"Has ganado {reward} XP.")
+        self.ui.show_mission_completed(selected_mission.name, reward)
 
 
     def get_available_missions(self):
@@ -56,42 +55,42 @@ class Game:
 
         while True:
             self.ui.show_menu()
-            choice = input("Elige una opción: ")
+            choice = self.ui.ask_options_menu()
 
-            if choice == "1":
+            if choice == 1:
                 self.ui.show_player(self.player)
-            elif choice == "2":
+
+            elif choice == 2:
                 self.ask_mission()
-            elif choice == "3":
+                
+            elif choice == 3:
                 self.ui.show_stats(self.player)
-            elif choice == "0":
+                
+            elif choice == 0:
                 player_manager.update_player(self.player)
-                print("Saliendo del juego.")
                 break
-            else:
-                print("Opción no válida. Por favor, elige otra opción.")
 
     def login(self):
         player_manager = PlayerManager()
-        player_name = input("Introduce el nombre del jugadora: ")
+        player_name = self.ui.ask_player_name()
         self.player = player_manager.find_player(player_name)
 
         if self.player is not None:
-            print("Login CORRECT!")
+            self.ui.show_result_login(True)
             self.options_menu(player_manager)
         else:
-            print("Login INCORRECT!")
+            self.ui.show_result_login(False)
 
     def signin(self):
         player_manager = PlayerManager()
-        player_name = input("Introduce el nombre del jugador: ")
+        player_name = self.ui.ask_player_name()
         self.player = player_manager.find_player(player_name)
         
         if self.player is None:
             self.player = player_manager.create_player(player_name)
-            print(f"Se ha creado el jugador {self.player.name}")
+            self.ui.show_result_singin(True)
         else:
-            print("El jugador ja existe.")
+            self.ui.show_result_singin(False)
 
     def start(self):
         while True:
@@ -104,5 +103,4 @@ class Game:
                 self.signin()
 
             elif (initial_choice == 0):
-                print("Salir del programa.")
                 break     
