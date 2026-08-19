@@ -1,12 +1,10 @@
-from managers.PlayerManager import PlayerManager
-from managers.MissionManager import MissionManager
-from ui.UI import UI
-
 class Game:
-    def __init__(self):
+    def __init__(self, ui, player_manager, mission_manager):
         self.player = ""
         self.missions_list = []
-        self.ui = UI()
+        self.ui = ui
+        self.player_manager = player_manager
+        self.mission_manager = mission_manager
 
     def mission_completed(self, selected_mission):
         reward = selected_mission.calculate_reward()
@@ -50,8 +48,7 @@ class Game:
                 continuar = False
 
     def options_menu(self, player_manager):
-        missions_manager = MissionManager()
-        self.missions_list = missions_manager.create_missions()
+        self.missions_list = self.mission_manager.create_missions()
 
         while True:
             self.ui.show_menu()
@@ -71,23 +68,21 @@ class Game:
                 break
 
     def login(self):
-        player_manager = PlayerManager()
         player_name = self.ui.ask_player_name()
-        self.player = player_manager.find_player(player_name)
+        self.player = self.player_manager.find_player(player_name)
 
         if self.player is not None:
             self.ui.show_result_login(True)
-            self.options_menu(player_manager)
+            self.options_menu(self.player_manager)
         else:
             self.ui.show_result_login(False)
 
     def signin(self):
-        player_manager = PlayerManager()
         player_name = self.ui.ask_player_name()
-        self.player = player_manager.find_player(player_name)
+        self.player = self.player_manager.find_player(player_name)
         
         if self.player is None:
-            self.player = player_manager.create_player(player_name)
+            self.player = self.player_manager.create_player(player_name)
             self.ui.show_result_singin(True)
         else:
             self.ui.show_result_singin(False)
