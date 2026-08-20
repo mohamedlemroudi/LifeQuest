@@ -82,16 +82,3 @@ class Game:
             self.ui.show_result_singin(True)
         else:
             self.ui.show_result_singin(False)
-
-    def start(self):
-        while True:
-            self.ui.show_initial_menu()
-            initial_choice = self.ui.ask_initial_choice()
-            if(initial_choice == 1):
-                self.login()
-                
-            elif(initial_choice == 2):
-                self.signin()
-
-            elif (initial_choice == 0):
-                break     

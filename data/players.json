@@ -136,5 +136,17 @@
             3,
             4
         ]
+    },
+    {
+        "name": "Abu",
+        "level": 2.0,
+        "xp": 95.0,
+        "total_xp": 295.0,
+        "missions_completed": 3,
+        "list_missions_completed": [
+            1,
+            2,
+            3
+        ]
     }
 ]
