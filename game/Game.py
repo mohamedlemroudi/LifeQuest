@@ -82,3 +82,8 @@ class Game:
             self.ui.show_result_singin(True)
         else:
             self.ui.show_result_singin(False)
+
+
+    def ask_options_intial_menu(self):
+            self.ui.show_initial_menu()
+            return self.ui.ask_initial_choice()

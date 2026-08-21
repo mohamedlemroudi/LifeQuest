@@ -4,9 +4,7 @@ class GameManager:
 
     def start(self):
         while True:
-            self.game.ui.show_initial_menu()
-            initial_choice = self.game.ui.ask_initial_choice()
-
+            initial_choice = self.game.ask_options_intial_menu()
             if(initial_choice == 1):
                 self.game.login()
                 
