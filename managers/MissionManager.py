@@ -9,21 +9,23 @@ class MissionManager:
 
     def load_missions(self):
         missions = self.storage.load()
-        self.list_missions = []
         
         for mission in missions:
 
             self.list_missions.append(Mission.from_dict(mission))
-                
-        return self.list_missions
 
+        return self.list_missions
+        
 
     def get_available_missions(self, player_missions_list):
-            return [
+            list_available_missions = [
                 mission
                 for mission in self.list_missions
                 if mission.id not in player_missions_list
+                and mission.days_left >= 0
             ]
+
+            return self.sort_missions(list_available_missions)
 
     def get_mission_by_position(self, mission_number, missions_completed):
         available_missions = self.get_available_missions(missions_completed)
@@ -32,3 +34,6 @@ class MissionManager:
             return available_missions[mission_number - 1]
         else:
             return None
+
+    def sort_missions(self, list_missions):
+            return sorted(list_missions, key=lambda mission: mission.days_left)

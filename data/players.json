@@ -160,5 +160,21 @@
             1,
             2
         ]
+    },
+    {
+        "name": "CR7",
+        "level": 0,
+        "xp": 0,
+        "total_xp": 0,
+        "missions_completed": 0,
+        "list_missions_completed": []
+    },
+    {
+        "name": "1",
+        "level": 0,
+        "xp": 0,
+        "total_xp": 0,
+        "missions_completed": 0,
+        "list_missions_completed": []
     }
 ]
