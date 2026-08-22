@@ -1,9 +1,22 @@
+from datetime import datetime
+
 class Mission:
-    def __init__(self, id, name, xp_reward, difficulty):
+    def __init__(self, id, name, xp_reward, difficulty, date_limit_string):
         self.id = id
         self.name = name
         self.xp_reward = xp_reward
         self.difficulty = difficulty
+        self.days_left = self.get_days_left(date_limit_string)
+
+
+    def get_days_left(self, date_limit_string):
+        format = "%d/%m/%Y %H:%M:%S"
+        date_limit_obj = datetime.strptime(date_limit_string, format)
+        
+        date_diff = date_limit_obj - datetime.now()
+
+        return date_diff.days
+        
 
     def calculate_reward(self):
 
@@ -15,19 +28,12 @@ class Mission:
 
         return self.xp_reward * multiplier[self.difficulty]
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "xp_reward": self.xp_reward,
-            "difficulty": self.difficulty
-        }
-
     @classmethod
     def from_dict(cls, data):
         return cls(
             data["id"],
             data["name"],
             data["xp_reward"],
-            data["difficulty"]
+            data["difficulty"],
+            data["date_limit"]
         )

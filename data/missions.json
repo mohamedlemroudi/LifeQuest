@@ -3,24 +3,28 @@
         "id": 1,
         "name": "Estudiar Python",
         "xp_reward": 50,
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "date_limit": "31/08/2026 00:00:00"
     },
     {
         "id": 2,
         "name": "Hacer ejercicio",
         "xp_reward": 30,
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "date_limit": "27/09/2026 00:00:00"
     },
     {
         "id": 3,
         "name": "Leer 20 páginas",
         "xp_reward": 100,
-        "difficulty": "difficult"
+        "difficulty": "difficult",
+        "date_limit": "15/08/2026 00:00:00"
     },
     {
         "id": 4,
         "name": "Meditar",
         "xp_reward": 175,
-        "difficulty": "difficult"
+        "difficulty": "difficult",
+        "date_limit": "19/10/2026 00:00:00"
     }
 ]
