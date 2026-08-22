@@ -1,4 +1,3 @@
-import json
 from models.Mission import Mission
 from storage.JsonStorage import JsonStorage
 
@@ -22,7 +21,7 @@ class MissionManager:
                 mission
                 for mission in self.list_missions
                 if mission.id not in player_missions_list
-                and mission.days_left >= 0
+                and mission.days_left() >= 0
             ]
 
             return self.sort_missions(list_available_missions)
@@ -36,4 +35,4 @@ class MissionManager:
             return None
 
     def sort_missions(self, list_missions):
-            return sorted(list_missions, key=lambda mission: mission.days_left)
+            return sorted(list_missions, key=lambda mission: mission.days_left())

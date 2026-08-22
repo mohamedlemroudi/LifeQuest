@@ -64,7 +64,7 @@ class UI:
                 f"{position}. {mission.name} | "
                 f"{mission.difficulty} | "
                 f"+{mission.calculate_reward()} XP | "
-                f"{mission.days_left} days left"
+                f"{mission.days_left()} days left"
             )
 
         print("0. Volver al menú principal.")
