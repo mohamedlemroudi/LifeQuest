@@ -28,7 +28,7 @@ class Game:
         if selected_mission is not None:
             self.mission_completed(selected_mission)
         else:
-            self.ui.not_found()
+            self.ui.not_found_mission()
 
     def ask_mission(self):
         continuar = True
