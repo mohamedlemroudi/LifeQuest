@@ -1,3 +1,5 @@
+import re
+
 class Game:
     def __init__(self, ui, player_manager, mission_manager):
         self.player = ""
@@ -74,7 +76,7 @@ class Game:
             self.ui.show_result_login(False)
 
     def signin(self):
-        player_name = self.ui.ask_player_name()
+        player_name = self.check_player_name(self.ui.ask_player_name())
         self.player = self.player_manager.find_player(player_name)
         
         if self.player is None:
@@ -87,3 +89,14 @@ class Game:
     def ask_options_intial_menu(self):
             self.ui.show_initial_menu()
             return self.ui.ask_initial_choice()
+
+    def check_player_name(self, player_name):
+        patron = r'^[a-zA-Z][a-zA-Z0-9_]{2,14}$'
+
+        while bool(re.fullmatch(patron, player_name)) == False:
+            print("No és un nombre correcto, por favor introduce otro nombre.")
+            player_name = self.ui.ask_player_name()
+
+        return player_name
+
+
