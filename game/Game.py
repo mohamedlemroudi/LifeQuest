@@ -94,7 +94,7 @@ class Game:
         patron = r'^[a-zA-Z][a-zA-Z0-9_]{2,14}$'
 
         while bool(re.fullmatch(patron, player_name)) == False:
-            print("No és un nombre correcto, por favor introduce otro nombre.")
+            self.ui.incorrect_name()
             player_name = self.ui.ask_player_name()
 
         return player_name

@@ -1,7 +1,8 @@
+from rich.console import Console
 
 class UI:
     def __init__(self):
-        pass
+        self.console = Console()
 
     def show_initial_menu(self):
         print("====================")
@@ -23,9 +24,9 @@ class UI:
                     return initial_choice
                 
                 else:
-                    print("No existe esta opcion.")
+                    self.console.print("[bold red]No existe esta opcion.[/bold red]")
             except ValueError:
-                print("Respuesta no válida.")
+                self.console.print("[bold red]Respuesta no válida.[/bold red]")
 
     def show_menu(self):
         print("====================")
@@ -74,7 +75,7 @@ class UI:
             return int(input("Elige una misión: "))
 
         except ValueError:
-            print("Respuesta no válida.")
+            self.console.print("[bold red]Respuesta no válida.[/bold red]")
 
 
     def ask_options_menu(self):
@@ -89,11 +90,11 @@ class UI:
                 return choice
 
             else:
-                print("Opción no válida. Por favor, elige otra opción.")
+                self.console.print("[bold red]Opción no válida. Por favor, elige otra opción.[/bold red]")
                 return -1
 
         except ValueError:
-            print("Respuesta no válida.")
+            self.console.print("[bold red]Respuesta no válida.[/bold red]")
 
 
     def ask_player_name(self):
@@ -101,24 +102,25 @@ class UI:
 
     def show_result_login(self, answer):
         if answer:
-            print("Login CORRECT!")
+            self.console.print("[bold green]Login CORRECT![/bold green]")
         else:
-            print("Login INCORRECT!")
+            self.console.print("[bold red]Login INCORRECT![/bold red]")
 
 
     def show_result_singin(self, answer):
         if answer:
-            print("Se ha creado el jugador!")
+            self.console.print("[bold green]Se ha creado el jugador![/bold green]")
         else:
-            print("El jugador ja existe.")
+            self.console.print("[bold red]El jugador ja existe.[/bold red]")
 
     def show_mission_completed(self, mission_name, reward):
-        print(f"Has completado: {mission_name}")
-        print(f"Has ganado {reward} XP.")
+        self.console.print(f"[bold green]Has completado: {mission_name}[/bold green]")
+        self.console.print(f"[bold green]Has ganado {reward} XP.[/bold green]")
 
     def not_found_mission(self):
-        print("No existe esa misión.")
+        self.console.print("[bold red]No existe esa misión.[/bold red]")
     
-    
+    def incorrect_name(self):
+        self.console.print("[bold red]No és un nombre correcto, por favor introduce otro nombre.[/bold red]")
 
-    
+     

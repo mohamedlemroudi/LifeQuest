@@ -8,5 +8,16 @@
         "list_missions_completed": [
             1
         ]
+    },
+    {
+        "name": "Abu",
+        "level": 0,
+        "xp": 95.0,
+        "total_xp": 95.0,
+        "missions_completed": 2,
+        "list_missions_completed": [
+            1,
+            2
+        ]
     }
 ]
